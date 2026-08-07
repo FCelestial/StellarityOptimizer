@@ -1,0 +1,15 @@
+name: StellarityOptimizer
+version: 1.0.0
+main: top.miragedge.stellarityoptimizer.StellarityOptimizer
+api-version: '1.21'
+depend: []
+softdepend: []
+description: Optimizes Stellarity datapack entity scanning with indexed lookups
+commands:
+  stellarityoptimizer:
+    description: StellarityOptimizer admin command
+    aliases: [so]
+    permission: stellarityoptimizer.admin
+permissions:
+  stellarityoptimizer.admin:
+    default: op

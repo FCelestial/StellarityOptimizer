@@ -1,0 +1,47 @@
+# StellarityOptimizer Configuration
+# This plugin replaces Stellarity/True-Ending/Kohara datapack @e scanning with indexed lookups
+
+# Cache update interval in ticks (lower = more responsive, higher = less CPU)
+cache-tick-interval: 5
+
+# Distance (in blocks) to search for entities around each player
+proximity-distance: 256
+
+# Which modules to handle (set to false to keep using datapack)
+modules:
+  # entity/main modules
+  pixies: true
+  empress_of_light: true
+  dragon: true
+  flesh_piglin: true
+  spawn_egg: true
+  illusioner: true
+  shulking: true
+  animal_convert: true
+  shulking_bossbar: true
+  shulking_ray: true
+
+  # main.mcfunction modules
+  marker_loop: true
+  item_loop: true
+  end_city_crystal: true
+  exit_portal: true
+
+  # kohara/main modules
+  kohara_status: true
+  kohara_particles: true
+  kohara_items: true
+  kohara_heal: true
+
+  # item/main modules
+  dragonblade: true
+  projectile_loop: true
+  phantom_item_frame: true
+  sandstorm_trident: true
+  fluffy_hammer: true
+
+  # True-Ending: fully handled by datapack (plugin does NOT interfere)
+  # true_ending tick.mcfunction is restored to original
+
+# Debug mode (logs when entities are found and functions dispatched)
+debug: false
