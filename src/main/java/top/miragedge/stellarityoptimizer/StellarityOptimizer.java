@@ -7,6 +7,7 @@ public class StellarityOptimizer extends JavaPlugin {
     private EntityRegistry entityRegistry;
     private PlayerProximityCache proximityCache;
     private TickDispatcher tickDispatcher;
+    private TimedLoopDispatcher timedLoopDispatcher;
     private ModuleConfig moduleConfig;
 
     @Override
@@ -27,6 +28,10 @@ public class StellarityOptimizer extends JavaPlugin {
 
         // Start tick dispatcher
         tickDispatcher.start();
+
+        // Start timed loop dispatcher (replaces datapack schedule-function self-loops)
+        timedLoopDispatcher = new TimedLoopDispatcher(this, entityRegistry);
+        timedLoopDispatcher.start();
 
         // Fix: Clean up residual creative_shock effects on online players
         // Previous versions had a bug where kohara_status wasn't dispatched correctly,
@@ -88,6 +93,7 @@ public class StellarityOptimizer extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (timedLoopDispatcher != null) timedLoopDispatcher.stop();
         if (proximityCache != null) proximityCache.stop();
         if (tickDispatcher != null) tickDispatcher.stop();
         getLogger().info("StellarityOptimizer disabled.");
