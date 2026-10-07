@@ -1,0 +1,53 @@
+# Line-ending policy — the single source of truth for this repo.
+# Why this file exists: without it, the SAME working tree on Windows and inside
+# WSL reports different `git status` results. Files committed as LF get rewritten
+# to CRLF by Windows-side editors, so WSL then sees every file as "modified"
+# (a pure newline diff — e.g. 5354 insertions / 5354 deletions with no content
+# change). Declaring the policy here makes both platforms agree permanently.
+#
+# Policy: normalise to LF in the repository; let each platform check out its
+# native form if it wants to.
+* text=auto eol=lf
+
+# Windows-only scripts must stay CRLF or cmd.exe can misparse them.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+# POSIX scripts must stay LF even on Windows, or the shebang breaks.
+*.sh      text eol=lf
+*.bash    text eol=lf
+gradlew   text eol=lf
+gradlew.bat text eol=crlf
+mvnw      text eol=lf
+mvnw.cmd  text eol=crlf
+
+# Binary — never touch, never diff.
+*.jar   binary
+*.zip   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.pdf   binary
+*.docx  binary
+*.xlsx  binary
+*.pptx  binary
+*.ttf   binary
+*.otf   binary
+*.woff  binary
+*.woff2 binary
+*.so    binary
+*.dll   binary
+*.exe   binary
+*.class binary
+*.bin   binary
+*.nbt   binary
+*.zstd  binary
+*.gz    binary
+
+# These are machine-generated / environment-specific; keep them out of diffs.
+*.iml    -text
+.idea/   -text
+.gradle/ -text
